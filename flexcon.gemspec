@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "flexcon"
   spec.version       = Flexcon::VERSION
   spec.authors       = ["Rodette Pedro"]
-  spec.email         = ["rpedro@jway.com"]
+  spec.email         = ["rodettcpedro@gmail.com"]
 
   spec.summary       = "Demand Lambda Arguments from a Scope"
   spec.description   = "Extract properties of a scope and pass it to a lambda function."
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.12"
+  spec.add_development_dependency "bundler", "~> 2.1.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
 end
