@@ -30,7 +30,7 @@ Or install it yourself as:
 
 ## Basic Usage
 
-Given a scope which could be an array, hash or an object, dispatch attributes of the scope into lambdas:
+Given a scope which could be an array, a hash, an object, or a proc - dispatch attributes of the scope into lambdas:
 
 ```ruby
 array_scope = ['John', 'Doe', 'Acme Corporation']
@@ -55,6 +55,21 @@ Flexcon.dispatch(array_scope, employee)
 Flexcon.dispatch(hash_scope, employee)
 Flexcon.dispatch(object_scope, employee)
 
+# The following returns "['user', 'student', 'university']"
+proc_scope = -> () do
+  {
+    models: [:user, :student, :university],
+    api: -> (params) do
+      params.to_json
+    end
+  }
+end
+
+api_wrapper = lambda do |api, models| 
+  api.call(models)
+end
+
+Flexcon.dispatch(proc_scope, api_wrapper)
 ```
 
 ## Advanced Usage

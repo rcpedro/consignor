@@ -6,6 +6,33 @@ describe Flexcon do
   end
 
   describe Flexcon do
+    context 'when the scope is a Proc' do
+      let(:api) do
+        -> (params) do
+          JSON.dump(params)
+        end
+      end
+
+      let(:list) do
+        [:user, :student, :university]
+      end
+
+      let (:models) { lambda { |models| models }}
+      let (:wrapper) { lambda { |models, api| api.call(models) }}
+
+      let(:scope) do
+        -> () do
+          {
+            models: list,
+            api: api
+          }
+        end
+      end
+
+      it { expect(Flexcon.dispatch(scope, models)).to  eq([:user, :student, :university]) }
+      it { expect(Flexcon.dispatch(scope, wrapper)).to eq(JSON.dump(list)) }
+    end
+
     context 'when the scope is an array' do
       let (:scope) { ['A', 'B', 'C'] }
 
